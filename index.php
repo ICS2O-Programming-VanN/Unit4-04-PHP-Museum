@@ -20,7 +20,11 @@
 		<!-- Heading and paragraph -->
     <?php
 			echo '<center><h1>Museum Admission Website, with PHP</h1></center><br>';
-			echo "<p>Enter your age and the day of the week below!</p>";
+      echo "<p>This website will tell you the price of admission depending on age and the day of the week!</p>";
+      echo "<p>People ages less than 5 or older than 95 gets in free!</p>";
+      echo "<p>Students ages between 12 and 21 get a discounted price regardless of the day!</p>";
+      echo "<p>Discounted Prices are also given on Tuesdays and Thursdays!</p>";
+      echo "<p>Enter your age and the day of the week below!</p>";
 		?>
 		<!-- Text field and button (Takes Input) -->
 		<form method = "post">
@@ -58,7 +62,7 @@
           $age = $_POST['age'];
           $day = $_POST['day'];
           
-          // IF the user gets in free (Age 1-5 & 95+)
+          // IF the user gets in free (Age 1-4 & 95++)
           if ($age < CHILD_FREE or $age > SENIOR_FREE) {
             echo "<br><h4>The cost is Free for you! Since you are " . $age . " years old.</h4>";
             // IF the user gets a discounted price
@@ -67,7 +71,7 @@
             echo "<br><h4>You get a discount! (Student Pricing)</h4>";
             // IF they selected a day and they aren't getting a discounted or free entry, they pay the regular fee
           } else if ($day != "") {
-            echo "<br><h4>You have to pay regular price.</h4>";
+            echo "<br><h4>You have to pay the regular price.</h4>";
             // ELSE statement for if did not select a day
           } else {
             echo "<br><h4>Please enter a valid day.</h4>";
@@ -76,6 +80,8 @@
         } else {
           echo "<h4>Please fill out a valid age!</h4>";
         }
+        echo "<h4>Your age: " . $age . "</h4>";
+        echo "<h4>The day: " . $day . "</h4>";
 			}
 		?>
   </body>

@@ -15,8 +15,10 @@ p {
 	color: rgb(158, 158, 255);
 	font-weight: bold;
   background-color: #f2ffb3;
+  padding: 10px;
 }
 
 h4 {
   background-color: #f2ffb3;
+  padding: 30px;
 }
