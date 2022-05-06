@@ -20,14 +20,14 @@
 		<!-- Heading and paragraph -->
     <?php
 			echo '<center><h1>Museum Admission Website, with PHP</h1></center><br>';
-			echo "<p>Enter your below!</p>";
+			echo "<p>Enter your age and the day of the week below!</p>";
 		?>
 		<!-- Text field and button (Takes Input) -->
 		<form method = "post">
       Age: <input type="number" step="1" min="1" name="age"> <br>
 			<br><br>
       <!-- Drop Down Menu -->
-      <p>Enter the day!</p>
+      <p>Select the day!</p>
       <label for="day">Day:</label>
       <select name="day" id="day">
         <option value="">[Day of the Week]</option>
@@ -42,11 +42,11 @@
       <br><br>
 			<input type ="submit" name ="submit"  value="Submit">
     </form>
-		<!-- Takes in user's age and outputs back what movies they can watch -->
+		<!-- Takes in user's age and day of week and outputs back cost -->
 		<?php
       // If Button clicked
 			if(isset($_POST['submit'])) {
-        // Ensures input field is not empty
+        // Ensures input field (for age) is not empty
         if($_POST['age'] != "") {
           // Constants
           define("CHILD_FREE", 5);
@@ -58,17 +58,17 @@
           $age = $_POST['age'];
           $day = $_POST['day'];
           
-          // IF the user can see a R-rated movie alone (18+)
+          // IF the user gets in free (Age 1-5 & 95+)
           if ($age < CHILD_FREE or $age > SENIOR_FREE) {
             echo "<br><h4>The cost is Free for you! Since you are " . $age . " years old.</h4>";
-            // IF the user can see a PG-13 movie alone (13+)
+            // IF the user gets a discounted price
           } else if ((($day == "Tuesday") or ($day == "Thursday")) or
                      (($age >= STUDENT_DISCOUNT_MIN) and ($age <= STUDENT_DISCOUNT_MAX))) {
             echo "<br><h4>You get a discount! (Student Pricing)</h4>";
-            // IF the user can see a PG or G rated movie (10+)
+            // IF they selected a day and they aren't getting a discounted or free entry, they pay the regular fee
           } else if ($day != "") {
             echo "<br><h4>You have to pay regular price.</h4>";
-            // ELSE statement for if the user is less than 10 years old
+            // ELSE statement for if did not select a day
           } else {
             echo "<br><h4>Please enter a valid day.</h4>";
           }
